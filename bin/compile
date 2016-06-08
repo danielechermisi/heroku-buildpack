@@ -130,6 +130,7 @@ else
 	APP_ROOT=$(echo "$ROOTS" | head -1)
 	cat << EOT >> ${BUILD_DIR}/Procfile
 #web: ./approot/kestrel --server.urls http://*:\$PORT
+export HTTP_PLATFORM_PORT=$PORT
 web: ./approot/web 
 EOT
 	fi
