@@ -103,6 +103,8 @@ ln -s ${DNU_CACHE_LOCATION} ${DNU_LOCAL_CACHE}/cache
 
 dnu restore $DNU_FLAGS ${PROJECT_JSON_FILE}
 
+dnu packages  add lib/Microsoft.AspNet.Server.Kestrel.1.0.0-rc1-final.nupkg
+
 # Install Node, bower, gulp and grunt-cli
 NODE_PATH=`mktemp -d`
 echo "Installing NodeJS: $NODE_PATH"
