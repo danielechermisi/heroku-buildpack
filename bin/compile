@@ -3,11 +3,11 @@
 
 # fail fast
 set -e
-echo "AAAAAA"
+echo "AAAAAA 1"
 if [ $STACK != "cedar-14" ]; then
 	echo "Stack ${STACK} not supported" && exit 1
 fi
-echo "AAAAAA"
+echo "AAAAAA 2"
 BUILD_DIR=$1
 CACHE_DIR=$2
 ENV_DIR=$3
@@ -24,7 +24,7 @@ export_env_dir ${ENV_DIR}
 : ${NODE_VERSION:="4.2.6"}
 : ${DNVM_BRANCH:="dev"}
 : ${DNX_VERSION:="latest"}
-echo "AAAAAA"
+echo "AAAAAA 3"
 # REMARK: https://github.com/aspnet/dnx/pull/2620 and https://github.com/aspnet/aspnet-docker/issues/80
 [ -z "$MONO_THREADS_PER_CPU" ] && export MONO_THREADS_PER_CPU=50
 
@@ -41,29 +41,30 @@ if [ -n "$UNSTABLE_TOOLCHAIN" ]; then
 else
 	DNVM_FLAGS=""
 fi
-echo "AAAAAA"
+echo "AAAAAA 4"
 SRC_DIR=`mktemp -d`
 # Move the app source code into temporary src dir using subshell to not leak shopt
 (
 	shopt -s dotglob
 	mv ${BUILD_DIR}/* ${SRC_DIR}
 )
-echo "AAAAAA"
+echo "AAAAAA 5"
 mkdir -p ${CACHE_DIR}
 
 echo "Installing ${MONO_DOWNLOAD_LOCATION}"
 curl ${MONO_DOWNLOAD_LOCATION} -Ls | tar xz -C ${BUILD_DIR}
 # Mono expects to be running out of /app
 ln -s ${BUILD_DIR}/mono /app
-echo "AAAAAA"
+echo "AAAAAA 6"
 export PATH="/app/mono/bin:${PATH}"
 export LD_LIBRARY_PATH="/app/mono/lib:${LD_LIBRARY_PATH}"
-
+echo "AAAAAA 6.1"
 mozroots --import --sync --quiet
+echo "AAAAAA 6.2"
 cp -r ~/.config ${BUILD_DIR}/.
-
+echo "AAAAAA 6.3"
 # Install DNX
-echo "AAAAAA"
+echo "AAAAAA 7"
 touch ~/.profile
 curl -sSL https://raw.githubusercontent.com/aspnet/Home/${DNVM_BRANCH}/dnvminstall.sh \
 	| sh && source ~/.dnx/dnvm/dnvm.sh
