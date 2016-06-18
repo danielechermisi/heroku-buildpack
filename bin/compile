@@ -63,6 +63,7 @@ mozroots --import --sync --quiet
 cp -r ~/.config ${BUILD_DIR}/.
 
 # Install DNX
+echo "Installing DNX"
 touch ~/.profile
 curl -sSL https://raw.githubusercontent.com/aspnet/Home/${DNVM_BRANCH}/dnvminstall.sh \
 	| sh && source ~/.dnx/dnvm/dnvm.sh
