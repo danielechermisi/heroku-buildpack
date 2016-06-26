@@ -142,7 +142,7 @@ else
 web: ./approot/web --server.urls http://+:\$PORT
 EOT
 
-	echo "BUILDINF Procfile 2"
+	echo "BUILDINF Procfile 3 Before cut"
 	cat ${BUILD_DIR}/Procfile 
 	fi
 fi
