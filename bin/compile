@@ -131,12 +131,18 @@ curl https://github.com/friism/libuv-builder/releases/download/v${LIBUV_VERSION}
 if [ -e ${SRC_DIR}/Procfile ]; then
 	cp ${SRC_DIR}/Procfile ${BUILD_DIR}
 else
+	echo "BUILDINF Procfile 1" 
 	ROOTS=`cd ${BUILD_DIR}; find approot/packages/ -name root`
 	if [ $( echo "${ROOTS}" | wc -l ) -gt 0 ]; then
 	APP_ROOT=$(echo "$ROOTS" | head -1)
+	echo "BUILDINF Procfile 2"
+	cat ${BUILD_DIR}/Procfile 
 	cat << EOT >> ${BUILD_DIR}/Procfile
 #web: ./approot/kestrel --server.urls http://*:\$PORT
 web: ./approot/web --server.urls http://+:\$PORT
 EOT
+
+	echo "BUILDINF Procfile 2"
+	cat ${BUILD_DIR}/Procfile 
 	fi
 fi
