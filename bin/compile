@@ -59,8 +59,8 @@ echo "AAAAAA 6"
 export PATH="/app/mono/bin:${PATH}"
 export LD_LIBRARY_PATH="/app/mono/lib:${LD_LIBRARY_PATH}"
 echo "AAAAAA 6.1"
-mozroots --import --sync
-# exec /app/mono/bin/mono $MONO_OPTIONS /app/mono/lib/mono/4.5/mozroots.exe --import --sync
+# mozroots --import --sync
+exec /app/mono/bin/mono $MONO_OPTIONS /app/mono/lib/mono/4.5/mozroots.exe --import --sync
  
 echo "AAAAAA 6.2"
 cp -r ~/.config ${BUILD_DIR}/.
