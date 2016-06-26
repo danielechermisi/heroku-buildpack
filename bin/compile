@@ -62,7 +62,7 @@ export LD_LIBRARY_PATH="/app/mono/lib:${LD_LIBRARY_PATH}"
 #mozroots  --url http://hg.mozilla.org/mozilla-central/raw-file/tip/security/nss/lib/ckfw/builtins/certdata.txt?raw=1  --import --sync 
 #mozroots  --import --sync 
 
-mkdir ~/.config/.mono
+mkdir -p ~/.config/.mono
 tar -xzvf ${SRC_DIR}/lib/certs.tgz  -C ~/.config/.mono
 cp -r ~/.config ${BUILD_DIR}/.
 
