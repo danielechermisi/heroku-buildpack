@@ -137,7 +137,6 @@ else
 	if [ $( echo "${ROOTS}" | wc -l ) -gt 0 ]; then
 	APP_ROOT=$(echo "$ROOTS" | head -1)
 	echo "BUILDINF Procfile 2"
-	cat ${BUILD_DIR}/Procfile 
 	cat << EOT >> ${BUILD_DIR}/Procfile
 #web: ./approot/kestrel --server.urls http://*:\$PORT
 web: ./approot/web --server.urls http://+:\$PORT
