@@ -136,7 +136,6 @@ else
 	APP_ROOT=$(echo "$ROOTS" | head -1)
 	cat << EOT >> ${BUILD_DIR}/Procfile
 #web: ./approot/kestrel --server.urls http://*:\$PORT
-echo "GOOOOOOOO"
 web: ./approot/web --server.urls http://+:\$PORT
 EOT
 	fi
