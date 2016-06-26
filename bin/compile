@@ -59,7 +59,7 @@ ln -s ${BUILD_DIR}/mono /app
 export PATH="/app/mono/bin:${PATH}"
 export LD_LIBRARY_PATH="/app/mono/lib:${LD_LIBRARY_PATH}"
 
-mozroots --import --sync --quiet
+mozroots  --url https://hg.mozilla.org/mozilla-central/raw-file/tip/security/nss/lib/ckfw/builtins/certdata.txt  --import --sync 
 cp -r ~/.config ${BUILD_DIR}/.
 
 # Install DNX
