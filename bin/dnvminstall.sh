@@ -4,8 +4,12 @@ _dnvmsetup_has() {
     type "$1" > /dev/null 2>&1
     return $?
 }
-CUR_DDDD=$0;
-echo $CUR_DDDD;
+CUR_DDDD=$1;
+echo "CUREDIRRRR $CUR_DDDD" ;
+echo $0;
+echo $1;
+echo $2;
+echo "_____";
 _dnvmsetup_update_profile() {
     local profile="$1"
     local sourceString="$2"
