@@ -4,7 +4,8 @@ _dnvmsetup_has() {
     type "$1" > /dev/null 2>&1
     return $?
 }
-
+CUR_DDDD=$0;
+echo $CUR_DDDD;
 _dnvmsetup_update_profile() {
     local profile="$1"
     local sourceString="$2"
@@ -27,7 +28,7 @@ if ! _dnvmsetup_has "curl"; then
 fi
 
 if [ -z "$DNVM_SOURCE" ]; then
-    DNVM_SOURCE="$BUILDPACK_DIR/bin/dnvm.sh"
+    DNVM_SOURCE="$CUR_DDDD/bin/dnvm.sh"
 fi
 
 # Downloading to $DNVM_DIR

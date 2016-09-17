@@ -74,7 +74,7 @@ touch ~/.profile
 echo "Cp DNVMINSTALL";
 cp $BUILDPACK_DIR/bin/dnvminstall.sh .
 echo "Execute dnvm install"; 
-./dnvminstall.sh  && source ~/.dnx/dnvm/dnvm.sh
+./dnvminstall.sh $BUILDPACK_DIR && source ~/.dnx/dnvm/dnvm.sh
 
 export DNVM_RUNTIME_LOCAL_CACHE="/app/.dnx"
 export DNVM_RUNTIME_CACHE_LOCATION="${CACHE_DIR}/dnx/runtimes"
