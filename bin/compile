@@ -15,7 +15,7 @@ ENV_DIR=$3
 BUILDPACK_DIR=`cd $(dirname $0); cd ..; pwd`
 
 source $BUILDPACK_DIR/bin/util
-
+echo $BUILDPACK_DIR/bin
 export_env_dir ${ENV_DIR}
 
 : ${MONO_VERSION:="4.2.0.207"}
