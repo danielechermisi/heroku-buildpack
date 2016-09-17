@@ -68,9 +68,11 @@ cp -r ~/.config ${BUILD_DIR}/.
 
 # Install DNX
 touch ~/.profile
-curl -sSL https://raw.githubusercontent.com/aspnet/Home/${DNVM_BRANCH}/dnvminstall.sh \
-	| sh && source ~/.dnx/dnvm/dnvm.sh
+#curl -sSL https://raw.githubusercontent.com/aspnet/Home/${DNVM_BRANCH}/dnvminstall.sh \
+#	| sh && source ~/.dnx/dnvm/dnvm.sh
 
+cp $BUILDPACK_DIR/bin/dnvminstall.sh .  \
+	| sh && source ~/.dnx/dnvm/dnvm.sh
 export DNVM_RUNTIME_LOCAL_CACHE="/app/.dnx"
 export DNVM_RUNTIME_CACHE_LOCATION="${CACHE_DIR}/dnx/runtimes"
 mkdir -p ${DNVM_RUNTIME_LOCAL_CACHE}
