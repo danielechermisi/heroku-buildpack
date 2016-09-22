@@ -127,7 +127,7 @@ else
 	echo "BUILDINF Procfile 1 using port ${PORT}"  
 	echo "buildir content " `ls ${BUILD_DIR}/approot`
 	ROOTS=`cd ${BUILD_DIR}; find approot/packages/ -name root`
-	echo "ROOT DIRECTORY "${ROOTS}";
+	echo "ROOT DIRECTORY ${ROOTS}";
 	if [ $( echo "${ROOTS}" | wc -l ) -gt 0 ]; then
 	APP_ROOT=$(echo "$ROOTS" | head -1)
 	echo "BUILDINF Procfile 2"
