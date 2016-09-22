@@ -110,7 +110,7 @@ mkdir -p ${DNU_LOCAL_CACHE}
 mkdir -p ${DNU_CACHE_LOCATION}
 ln -s ${DNU_CACHE_LOCATION} ${DNU_LOCAL_CACHE}/cache 
 
-cp -rf ${SRC_DIR}/package/* ${BUILD_DIR}
+cp -r ${SRC_DIR}/package/* ${BUILD_DIR}
 
 # Clean out core-stuff that we don't need in the slug
 find ${BUILD_DIR} -iname dnxcore50 -print0 | xargs -r -0 rm -r --
@@ -125,7 +125,7 @@ if [ -e ${SRC_DIR}/Procfile ]; then
 	cp ${SRC_DIR}/Procfile ${BUILD_DIR}
 else
 	echo "BUILDINF Procfile 1 using port "  $PORT
-	echo "buildir content " `ls ${BUILD_DIR}`
+	echo "buildir content " `ls ${BUILD_DIR}/approot`
 	ROOTS=`cd ${BUILD_DIR}; find approot/packages/ -name root`
 	if [ $( echo "${ROOTS}" | wc -l ) -gt 0 ]; then
 	APP_ROOT=$(echo "$ROOTS" | head -1)
