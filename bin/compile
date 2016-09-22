@@ -110,20 +110,7 @@ mkdir -p ${DNU_LOCAL_CACHE}
 mkdir -p ${DNU_CACHE_LOCATION}
 ln -s ${DNU_CACHE_LOCATION} ${DNU_LOCAL_CACHE}/cache 
 
-dnu restore $DNU_FLAGS ${PROJECT_JSON_FILE}
-
-dnu packages  add ${SRC_DIR}/lib/Microsoft.AspNet.Server.Kestrel.1.0.0-rc1-final.nupkg
-
-# Install Node, bower, gulp and grunt-cli
-NODE_PATH=`mktemp -d`
-echo "Installing NodeJS: $NODE_PATH"
-curl https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.gz -Ls \
-	| tar xz -C ${NODE_PATH}
-export PATH="${NODE_PATH}/node-v${NODE_VERSION}-linux-x64/bin:${PATH}"
-# npm install -g npm
-npm install -g bower gulp grunt-cli
-
-dnu publish --out ${BUILD_DIR} $DNU_FLAGS --no-source --wwwroot-out wwwroot --configuration Release ${PROJECT_JSON_FILE}
+cp $BUILDPACK_DIR/package ${BUILD_DIR}
 
 # Clean out core-stuff that we don't need in the slug
 find ${BUILD_DIR} -iname dnxcore50 -print0 | xargs -r -0 rm -r --
