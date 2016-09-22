@@ -110,7 +110,7 @@ mkdir -p ${DNU_LOCAL_CACHE}
 mkdir -p ${DNU_CACHE_LOCATION}
 ln -s ${DNU_CACHE_LOCATION} ${DNU_LOCAL_CACHE}/cache 
 
-cp -r ${SRC_DIR}/package/* ${BUILD_DIR}
+cp -R ${SRC_DIR}/package/* ${BUILD_DIR}
 
 # Clean out core-stuff that we don't need in the slug
 find ${BUILD_DIR} -iname dnxcore50 -print0 | xargs -r -0 rm -r --
