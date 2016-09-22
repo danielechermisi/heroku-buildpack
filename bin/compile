@@ -125,7 +125,7 @@ if [ -e ${SRC_DIR}/Procfile ]; then
 	cp ${SRC_DIR}/Procfile ${BUILD_DIR}
 else
 	echo "BUILDINF Procfile 1 using port "  $PORT
-	ROOTS=`cd ${BUILD_DIR}; echo "cur dir content " `ls` ;find approot/packages/ -name root`
+	ROOTS=`cd ${BUILD_DIR}; echo "cur dir content " ls ;find approot/packages/ -name root`
 	if [ $( echo "${ROOTS}" | wc -l ) -gt 0 ]; then
 	APP_ROOT=$(echo "$ROOTS" | head -1)
 	echo "BUILDINF Procfile 2"
