@@ -110,7 +110,7 @@ mkdir -p ${DNU_LOCAL_CACHE}
 mkdir -p ${DNU_CACHE_LOCATION}
 ln -s ${DNU_CACHE_LOCATION} ${DNU_LOCAL_CACHE}/cache 
 
-dnu packages  add ${SRC_DIR}/lib/Microsoft.AspNet.Server.Kestrel.1.0.0-rc1-final.nupkg
+#dnu packages  add ${SRC_DIR}/lib/Microsoft.AspNet.Server.Kestrel.1.0.0-rc1-final.nupkg
 
 #cp -R ${SRC_DIR}/package/* ${BUILD_DIR}
 #tar -xzf ${SRC_DIR}/app.tgz  -C ${BUILD_DIR}
