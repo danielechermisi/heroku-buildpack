@@ -110,10 +110,40 @@ mkdir -p ${DNU_LOCAL_CACHE}
 mkdir -p ${DNU_CACHE_LOCATION}
 ln -s ${DNU_CACHE_LOCATION} ${DNU_LOCAL_CACHE}/cache 
 
-#dnu packages  add ${SRC_DIR}/lib/Microsoft.AspNet.Server.Kestrel.1.0.0-rc1-final.nupkg
+if [ -e ${SRC_DIR}/app.tgz ]; then
+    dnu packages  add ${SRC_DIR}/lib/Microsoft.AspNet.Server.Kestrel.1.0.0-rc1-final.nupkg
 
-#cp -R ${SRC_DIR}/package/* ${BUILD_DIR}
-#tar -xzf ${SRC_DIR}/app.tgz  -C ${BUILD_DIR}
+    #cp -R ${SRC_DIR}/package/* ${BUILD_DIR}
+    tar -xzf ${SRC_DIR}/app.tgz  -C ${BUILD_DIR}
 
-# Clean out core-stuff that we don't need in the slug
+    # Clean out core-stuff that we don't need in the slug
+    find ${BUILD_DIR} -iname dnxcore50 -print0 | xargs -r -0 rm -r --
 
+    mkdir -p ${BUILD_DIR}/.profile.d
+    cp -n ${BUILDPACK_DIR}/.profile.d/* ${BUILD_DIR}/.profile.d/
+
+    curl https://github.com/friism/libuv-builder/releases/download/v${LIBUV_VERSION}/libuv-${LIBUV_VERSION}.tar.gz -sL \
+        | tar xz -C ${BUILD_DIR}
+    echo "PROC FILE STUFFFFFFF"
+    if [ -e ${SRC_DIR}/Procfile ]; then
+        cp ${SRC_DIR}/Procfile ${BUILD_DIR}
+    else
+        echo "BUILDINF Procfile 1 using port ${PORT}"  
+        echo "buildir content " `ls ${BUILD_DIR}/approot`
+        ROOTS=`cd ${BUILD_DIR}; find approot/packages/ -name root`
+        echo "ROOT DIRECTORY ${ROOTS}";
+        if [ $( echo "${ROOTS}" | wc -l ) -gt 0 ]; then
+        APP_ROOT=$(echo "$ROOTS" | head -1)
+        echo "BUILDINF Procfile 2"
+        cat << EOT >> ${BUILD_DIR}/Procfile
+    #web: ./approot/kestrel --server.urls http://*:\$PORT
+    web: ./approot/web --server.urls http://*:\$PORT
+    EOT
+
+        echo "BUILDINF Procfile 3 Before cut"
+        cat ${BUILD_DIR}/Procfile 
+        fi
+    fi
+else 
+echo "No app.tgz found. APP WILL NOT WORK"
+fi
